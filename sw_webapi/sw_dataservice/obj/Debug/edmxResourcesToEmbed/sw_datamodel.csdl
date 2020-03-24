@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="director" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="edited" Type="DateTime" Precision="3" />
+    <Property Name="episode_id" Type="Int32" />
+    <Property Name="opening_crawl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="producer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="release_date" Type="DateTime" Precision="3" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="people" Relationship="Self.films_characters" FromRole="films" ToRole="people" />
+    <NavigationProperty Name="species" Relationship="SWModel.films_species" FromRole="film" ToRole="species" />
+    <NavigationProperty Name="planets" Relationship="SWModel.films_planets" FromRole="film" ToRole="planet" />
+    <NavigationProperty Name="vehicles" Relationship="SWModel.films_vehicles" FromRole="film" ToRole="vehicle" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="birth_year" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="edited" Type="DateTime" Precision="3" />
+    <Property Name="eye_color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hair_color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="height" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="homeworld" Type="Int32" />
+    <Property Name="mass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="skin_color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="films" Relationship="Self.films_characters" FromRole="people" ToRole="films" />
+    <NavigationProperty Name="species" Relationship="SWModel.species_people" FromRole="person" ToRole="species" />
+    <NavigationProperty Name="vehicles" Relationship="SWModel.vehicles_pilots" FromRole="person" ToRole="vehicle" />
+  </EntityType>
+  <Association Name="films_characters">
+    <End Role="films" Type="Self.film" Multiplicity="*" />
+    <End Role="people" Type="Self.person" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="StarWarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="films" EntityType="Self.film" />
+    <EntitySet Name="people" EntityType="Self.person" />
+    <AssociationSet Name="films_characters" Association="Self.films_characters">
+      <End Role="films" EntitySet="films" />
+      <End Role="people" EntitySet="people" />
+    </AssociationSet>
+    <EntitySet Name="species" EntityType="SWModel.species" />
+    <AssociationSet Name="films_species" Association="SWModel.films_species">
+      <End Role="film" EntitySet="films" />
+      <End Role="species" EntitySet="species" />
+    </AssociationSet>
+    <EntitySet Name="planets" EntityType="SWModel.planet" />
+    <EntitySet Name="vehicles" EntityType="SWModel.vehicle" />
+    <AssociationSet Name="films_planets" Association="SWModel.films_planets">
+      <End Role="film" EntitySet="films" />
+      <End Role="planet" EntitySet="planets" />
+    </AssociationSet>
+    <AssociationSet Name="films_vehicles" Association="SWModel.films_vehicles">
+      <End Role="film" EntitySet="films" />
+      <End Role="vehicle" EntitySet="vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="species_people" Association="SWModel.species_people">
+      <End Role="species" EntitySet="species" />
+      <End Role="person" EntitySet="people" />
+    </AssociationSet>
+    <AssociationSet Name="vehicles_pilots" Association="SWModel.vehicles_pilots">
+      <End Role="vehicle" EntitySet="vehicles" />
+      <End Role="person" EntitySet="people" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="species">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="average_height" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="average_lifespan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="classification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="edited" Type="DateTime" Precision="3" />
+    <Property Name="eye_colors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hair_colors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="homeworld" Type="Int32" />
+    <Property Name="language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="skin_colors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="films" Relationship="SWModel.films_species" FromRole="species" ToRole="film" />
+    <NavigationProperty Name="people" Relationship="SWModel.species_people" FromRole="species" ToRole="person" />
+  </EntityType>
+  <Association Name="films_species">
+    <End Type="SWModel.film" Role="film" Multiplicity="*" />
+    <End Type="SWModel.species" Role="species" Multiplicity="*" />
+  </Association>
+  <EntityType Name="planet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="climate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="diameter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="edited" Type="DateTime" Precision="3" />
+    <Property Name="gravity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="orbital_period" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="population" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="rotation_period" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="surface_water" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="terrain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="films" Relationship="SWModel.films_planets" FromRole="planet" ToRole="film" />
+  </EntityType>
+  <EntityType Name="vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="vehicle_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="films" Relationship="SWModel.films_vehicles" FromRole="vehicle" ToRole="film" />
+    <NavigationProperty Name="people" Relationship="SWModel.vehicles_pilots" FromRole="vehicle" ToRole="person" />
+  </EntityType>
+  <Association Name="films_planets">
+    <End Type="SWModel.film" Role="film" Multiplicity="*" />
+    <End Type="SWModel.planet" Role="planet" Multiplicity="*" />
+  </Association>
+  <Association Name="films_vehicles">
+    <End Type="SWModel.film" Role="film" Multiplicity="*" />
+    <End Type="SWModel.vehicle" Role="vehicle" Multiplicity="*" />
+  </Association>
+  <Association Name="species_people">
+    <End Type="SWModel.species" Role="species" Multiplicity="*" />
+    <End Type="SWModel.person" Role="person" Multiplicity="*" />
+  </Association>
+  <Association Name="vehicles_pilots">
+    <End Type="SWModel.vehicle" Role="vehicle" Multiplicity="*" />
+    <End Type="SWModel.person" Role="person" Multiplicity="*" />
+  </Association>
+</Schema>

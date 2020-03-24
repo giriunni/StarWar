@@ -1,0 +1,10 @@
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\sw_dataservice.dll.config
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\sw_dataservice.dll
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\sw_dataservice.pdb
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\EntityFramework.dll
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\EntityFramework.SqlServer.dll
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\EntityFramework.xml
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\bin\Debug\EntityFramework.SqlServer.xml
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\obj\Debug\sw_dataservice.csproj.CopyComplete
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\obj\Debug\sw_dataservice.dll
+E:\Development Activity\StarWarProject\sw_webapi\sw_dataservice\obj\Debug\sw_dataservice.pdb

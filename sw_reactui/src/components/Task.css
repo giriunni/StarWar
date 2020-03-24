@@ -1,0 +1,7 @@
+.overflow-scrolling {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;    
+}
+.newline-data{
+    white-space: pre-wrap; 
+}

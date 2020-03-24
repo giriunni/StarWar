@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="990b2e15ac8e4d9fba168546066ffc7b" Name="Diagram1">
+        <EntityTypeShape EntityType="SWModel.film" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SWModel.person" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="SWModel.films_characters" />
+        <EntityTypeShape EntityType="SWModel.species" Width="1.5" PointX="3" PointY="6" />
+        <AssociationConnector Association="SWModel.films_species" />
+        <EntityTypeShape EntityType="SWModel.planet" Width="1.5" PointX="3" PointY="13.25" />
+        <EntityTypeShape EntityType="SWModel.vehicle" Width="1.5" PointX="3" PointY="10.625" />
+        <AssociationConnector Association="SWModel.films_planets" />
+        <AssociationConnector Association="SWModel.films_vehicles" />
+        <AssociationConnector Association="SWModel.species_people" />
+        <AssociationConnector Association="SWModel.vehicles_pilots" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
